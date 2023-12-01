@@ -17,11 +17,17 @@ class MemberRepositoryTest {
 
     @Test
     @Transactional
-    void showAll(){
+    void showAll() {
         List<MemberEntity> members = repository.findAll();
 
-        for(MemberEntity member : members){
-            System.out.println(member.getName());
+        for (MemberEntity member : members) {
+            System.out.printf("name:%7s\tEmail:%15s\tRole:%7s\n", member.getName(), member.getEmail(), member.getRole());
         }
+    }
+
+    @Test
+    @Transactional
+    void showAdmin(){
+
     }
 }

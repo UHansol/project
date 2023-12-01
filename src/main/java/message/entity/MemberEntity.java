@@ -5,18 +5,23 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
+import java.util.List;
 
 @Table(name = "members", schema = "ync",
         indexes = {@Index(name = "IDX_MEMBER_DELECT_STAUTS", columnList = "DELECT_STATUS")})
-@SequenceGenerator(name = "MEMEBER_SEQ", schema = "YNC", allocationSize = 1, sequenceName = "MEMBER_SEQ")
 @Entity
 @Getter
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class MemberEntity {
+public class MemberEntity implements UserDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MEMBER_SEQ")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "member_id")
     private Long memberId;
 
@@ -36,5 +41,35 @@ public class MemberEntity {
     private Long delectStatus;
 
     @Column(name = "role")
-    private Long role;
+    private Role role;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(role.name()));
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 }
