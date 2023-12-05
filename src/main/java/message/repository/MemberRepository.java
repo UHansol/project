@@ -4,12 +4,12 @@ package message.repository;
 import message.entity.MemberEntity;
 import message.entity.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface MemberRepository extends JpaRepository<MemberEntity, Long> {
+    Optional<MemberEntity> findById(Long id);
 
     Optional<MemberEntity> findByEmail(String email);
 
@@ -19,4 +19,6 @@ public interface MemberRepository extends JpaRepository<MemberEntity, Long> {
 
     // 관리자 존재 여부 체크용.
     MemberEntity findByRole(Role role);
+    List<MemberEntity> findAllByRole(Role role);
+    MemberEntity findByName(String name);
 }
