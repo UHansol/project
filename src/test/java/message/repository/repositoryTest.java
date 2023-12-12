@@ -2,9 +2,7 @@ package message.repository;
 
 import org.junit.jupiter.api.Test;
 import message.entity.MemberEntity;
-import message.entity.MessageEntity;
 import message.entity.Role;
-import message.dto.messageDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.List;
 
 @SpringBootTest
-class repositoryTest {
+class RepositoryTest {
     @Autowired
     private MessageRepository messageRepository;
     @Autowired
