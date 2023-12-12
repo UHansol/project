@@ -1,10 +1,7 @@
 package message.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,6 +13,7 @@ import java.util.List;
         indexes = {@Index(name = "IDX_MEMBER_DELECT_STAUTS", columnList = "DELECT_STATUS")})
 @Entity
 @Getter
+@Setter
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor

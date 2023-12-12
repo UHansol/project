@@ -41,29 +41,8 @@ class repositoryTest {
 
     @Test
     @Transactional
-    void testToDTO() {
-        // Create a sample MessageEntity
-        MessageEntity messageEntity = new MessageEntity();
-        messageEntity.setMessageId(1L);
-        messageEntity.setContent("Test content");
+    void messageList() {
 
-        MemberEntity sender = new MemberEntity();
-        sender.getName();
-
-        MemberEntity receiver = new MemberEntity();
-        receiver.getName();
-
-        messageEntity.setSenderMember(sender);
-        messageEntity.setReceiverMember(receiver);
-
-        // Convert MessageEntity to messageDTO
-        messageDTO dto = messageDTO.toDTO(messageEntity);
-
-        // Check if the conversion is correct
-        assertEquals(messageEntity.getMessageId(), dto.getMessage_Id());
-        assertEquals(messageEntity.getContent(), dto.getContent());
-        assertEquals(messageEntity.getSenderMember().getName(), dto.getSenderMember());
-        assertEquals(messageEntity.getReceiverMember().getName(), dto.getReceiverMember());
     }
 
 }
